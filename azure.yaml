@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+
+name: languse-aca
+pipeline:
+  variables:
+      - AZURE_USE_AUTHENTICATION
+      - AZURE_AUTH_TENANT_ID
+      - AZURE_CLIENT_APP_ID
+  secrets:
+      - AZURE_CLIENT_APP_SECRET
+hooks:
+    preprovision:
+      posix:
+        shell: sh
+        run: ./scripts/auth_init.sh
+        interactive: true
+        continueOnError: false
+    postprovision:
+      posix:
+        shell: sh
+        run: ./scripts/auth_update.sh
+        interactive: true
+        continueOnError: false

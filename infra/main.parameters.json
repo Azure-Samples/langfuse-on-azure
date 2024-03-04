@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "name": {
+        "value": "${AZURE_ENV_NAME}"
+      },
+      "location": {
+        "value": "${AZURE_LOCATION}"
+      },
+      "principalId": {
+        "value": "${AZURE_PRINCIPAL_ID}"
+      },
+      "databasePassword": {
+        "value": "$(secretOrRandomPassword ${AZURE_KEY_VAULT_NAME} DATABASEPASSWORD)"
+      },
+      "nextAuthSecret": {
+        "value": "$(secretOrRandomPassword ${AZURE_KEY_VAULT_NAME} NEXTAUTHSECRET)"
+      },
+      "salt": {
+        "value": "$(secretOrRandomPassword ${AZURE_KEY_VAULT_NAME} SALT)"
+      },
+      "useAuthentication": {
+        "value": "${AZURE_USE_AUTHENTICATION=false}"
+      },
+      "authTenantId": {
+        "value": "${AZURE_AUTH_TENANT_ID}"
+      },
+      "authClientId": {
+        "value": "${AZURE_AUTH_CLIENT_ID}"
+      },
+      "authClientSecret": {
+        "value": "${AZURE_AUTH_CLIENT_SECRET}"
+      }
+  }
+}

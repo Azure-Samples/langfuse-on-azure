@@ -1,57 +1,28 @@
-# Project Name
+# Langfuse on Azure
 
-(short, 1-3 sentenced, description of the project)
+Use the Azure Developer CLI to deploy [Langfuse](https://langfuse.com/) to Azure.
 
-## Features
+Run:
 
-This project framework provides the following features:
+```shell
+azd up
+```
 
-* Feature 1
-* Feature 2
-* ...
+## Enabling authentication
 
-## Getting Started
+By default, the deployed Azure Container App will use the Langfuse authentication system, meaning anyone with routable network access to the web app can attempt to login to it.
 
-### Prerequisites
+To enable Entra-based authentication, set theses variable _before_ running `azd up`:
 
-(ideally very short, if any)
+1. Run `azd env set AZURE_AUTH_TENANT_ID your-tenant-id` to your Azure AD tenant ID.
+1. Run `azd env set AZURE_USE_AUTHENTICATION true`
 
-- OS
-- Library version
-- ...
+When those variables are set, `azd up` will enable Entra authentication for the deployed app by:
 
-### Installation
+* Using a preprovision hook to call `auth_init.py` to create an App Registration. That script sets the `AZURE_AUTH_APP_ID`, `AZURE_AUTH_CLIENT_ID`, and `AZURE_AUTH_CLIENT_SECRET` environment variables.
+* During provisioning, passing those environment variables to the Azure Container App, and disabling non-Entra authentication methods.
+* Using a postprovision hook to call `auth_update.py` to set the redirect URI to the URL of the deployed Azure Container App.
 
-(ideally very short)
+## Disclaimer
 
-- npm install [package name]
-- mvn install
-- ...
-
-### Quickstart
-(Add steps to get up and running quickly)
-
-1. git clone [repository clone url]
-2. cd [repository name]
-3. ...
-
-
-## Demo
-
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
-
-## Resources
-
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
+Langfuse is an external project and is not affiliated with Microsoft. You should review their terms, security, and privacy policies before deploying the langfuse image to Azure.
