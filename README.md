@@ -12,12 +12,34 @@ azd up
 
 By default, the deployed Azure Container App will use the Langfuse authentication system, meaning anyone with routable network access to the web app can attempt to login to it.
 
-To enable Entra-based authentication, set theses variable _before_ running `azd up`:
+To enable Entra-based authentication, follow these steps before running `azd up`:
 
-1. Run `azd env set AZURE_AUTH_TENANT_ID your-tenant-id` to your Azure AD tenant ID.
-1. Run `azd env set AZURE_USE_AUTHENTICATION true`
+1. Create a Python virtual environment.
+2. Install the required packages:
 
-When those variables are set, `azd up` will enable Entra authentication for the deployed app by:
+    ```shell
+    python -m install -r requirements.txt
+    ```
+
+3. Run this command to enable Entra authentication:
+
+    ```shell
+    azd env set AZURE_USE_AUTHENTICATION true
+    ```
+
+4. Run this command to specify your tenant ID:
+
+    ```shell
+    azd env set AZURE_AUTH_TENANT_ID your-tenant-id
+    ```
+
+5. Run the `up` command:
+
+    ```shell
+    azd up
+    ```
+
+The `azd up` flow will enable Entra authentication for the deployed app by:
 
 * Using a preprovision hook to call `auth_init.py` to create an App Registration. That script sets the `AZURE_AUTH_APP_ID`, `AZURE_AUTH_CLIENT_ID`, and `AZURE_AUTH_CLIENT_SECRET` environment variables.
 * During provisioning, passing those environment variables to the Azure Container App, and disabling non-Entra authentication methods.
