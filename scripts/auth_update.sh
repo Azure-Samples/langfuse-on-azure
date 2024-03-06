@@ -1,10 +1,12 @@
-echo "Loading azd .env file from current environment"
+ #!/bin/sh
 
-while IFS='=' read -r key value; do
-    value=$(echo "$value" | sed 's/^"//' | sed 's/"$//')
-    export "$key=$value"
-done <<EOF
-$(azd env get-values)
-EOF
+. ./scripts/load_env.sh
+
+# Echo the value of SERVICE_APP_URI
+echo "Container app deployed at: $SERVICE_APP_URI"
+
+if [ -z "$AZURE_USE_AUTHENTICATION" ]; then
+  exit 0
+fi
 
 python ./scripts/auth_update.py

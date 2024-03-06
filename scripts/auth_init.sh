@@ -1,10 +1,12 @@
-echo "Loading azd .env file from current environment"
+ #!/bin/sh
 
-while IFS='=' read -r key value; do
-    value=$(echo "$value" | sed 's/^"//' | sed 's/"$//')
-    export "$key=$value"
-done <<EOF
-$(azd env get-values)
-EOF
+echo "Checking if authentication should be setup..."
+
+. ./scripts/load_env.sh
+
+if [ -z "$AZURE_USE_AUTHENTICATION" ]; then
+  echo "AZURE_USE_AUTHENTICATION is not set, skipping authentication setup."
+  exit 0
+fi
 
 python ./scripts/auth_init.py
