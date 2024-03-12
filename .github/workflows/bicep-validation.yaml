@@ -8,6 +8,7 @@ on:
     branches: [ main ]
     paths:
       - "infra/**"
+  workflow_dispatch:
 
 permissions:
   security-events: write
