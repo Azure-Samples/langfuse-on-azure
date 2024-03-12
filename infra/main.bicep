@@ -23,6 +23,7 @@ param salt string
 
 param useAuthentication bool = false
 param authClientId string = ''
+@secure()
 param authClientSecret string = ''
 param authTenantId string = ''
 
