@@ -10,13 +10,12 @@ on:
       - "infra/**"
   workflow_dispatch:
 
-permissions:
-  security-events: write
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,8 +27,6 @@ jobs:
           
       - name: Run Microsoft Security DevOps Analysis
         uses: microsoft/security-devops-action@v1
-        env:
-            GDN_TEMPLATEANALYZER_VERBOSE: 1
         id: msdo
         continue-on-error: true
         with:
