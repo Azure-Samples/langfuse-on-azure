@@ -9,6 +9,9 @@ on:
     paths:
       - "infra/**"
 
+permissions:
+  security-events: write
+
 jobs:
   build:
 
