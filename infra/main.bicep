@@ -150,7 +150,7 @@ module containerApp 'core/host/container-app.bicep' = {
       }
       {
         name: 'AUTH_AZURE_AD_CLIENT_SECRET'
-        value: authClientSecret
+        secretRef: 'authclientsecret'
       }
       {
         name: 'AUTH_AZURE_AD_TENANT_ID'
@@ -161,20 +161,12 @@ module containerApp 'core/host/container-app.bicep' = {
         value: useAuthentication ? 'true' : 'false'
       }
     ]
-    secrets: [
-      {
-        name: 'databasepassword'
-        value: databasePassword
-      }
-      {
-        name: 'nextauthsecret'
-        value: nextAuthSecret
-      }
-      {
-        name: 'salt'
-        value: salt
-      }
-    ]
+    secrets: {
+      'databasepassword': databasePassword
+      'nextauthsecret': nextAuthSecret
+      'salt': salt
+      'authclientsecret': authClientSecret
+    }
   }
 }
 
