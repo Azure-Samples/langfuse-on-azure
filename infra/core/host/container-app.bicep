@@ -3,7 +3,9 @@ param location string = resourceGroup().location
 param tags object = {}
 
 param containerEnvId string
-param secrets array = []
+@secure()
+param secrets object
+
 param env array = []
 param imageName string
 param targetPort int = 80
@@ -23,7 +25,10 @@ resource containerApp 'Microsoft.App/containerapps@2022-03-01' = {
         external: true
         targetPort: targetPort
       }
-      secrets: secrets
+      secrets: [for secret in items(secrets): {
+        name: secret.key
+        value: secret.value
+      }]
     }
     template: {
       containers: [
