@@ -1,6 +1,8 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
 
-name: languse-aca
+name: langfuse-aca
+metadata:
+  template: langfuse-aca@0.0.1-beta
 pipeline:
   variables:
       - AZURE_USE_AUTHENTICATION
