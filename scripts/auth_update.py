@@ -16,7 +16,7 @@ async def update_redirect_uris(client: GraphServiceClient, app_id: str, uri: str
             ]
         ),
     )
-    await client.applications.patch(request_body)
+    await client.applications.by_application_id(app_id).patch(request_body)
 
 
 async def main():
