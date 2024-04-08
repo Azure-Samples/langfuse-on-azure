@@ -1,2 +1,2 @@
-urllib3
 azure-identity
+msgraph-sdk
