@@ -196,3 +196,4 @@ module keyVaultSecrets './core/security/keyvault-secret.bicep' = [for secret in 
 }]
 
 output SERVICE_APP_URI string = containerApp.outputs.uri
+output AZURE_KEY_VAULT_NAME string = keyVault.outputs.name
