@@ -25,9 +25,9 @@ From a deployed Generations tab in Langfuse:
 Table of contents:
 
 * [Opening this project](#opening-this-project)
-    * [GitHub Codespaces](#github-codespaces)
-    * [VS Code Dev Containers](#vs-code-dev-containers)
-    * [Local environment](#local-environment)
+  * [GitHub Codespaces](#github-codespaces)
+  * [VS Code Dev Containers](#vs-code-dev-containers)
+  * [Local environment](#local-environment)
 * [Deploying to Azure](#deploying-to-azure)
 * [Disclaimer](#disclaimer)
 
@@ -75,7 +75,7 @@ A related option is VS Code Dev Containers, which will open the project in your 
     ```shell
     pip install -r requirements.txt
     ```
-    
+
 5. Open a terminal window inside the project folder.
 
 ## Deploying to Azure

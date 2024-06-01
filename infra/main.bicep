@@ -162,10 +162,10 @@ module containerApp 'core/host/container-app.bicep' = {
       }
     ]
     secrets: {
-      'databasepassword': databasePassword
-      'nextauthsecret': nextAuthSecret
-      'salt': salt
-      'authclientsecret': authClientSecret
+      databasepassword: databasePassword
+      nextauthsecret: nextAuthSecret
+      salt: salt
+      authclientsecret: useAuthentication ? authClientSecret : 'unset'
     }
   }
 }
