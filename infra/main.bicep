@@ -113,7 +113,7 @@ module containerApp 'core/host/container-app.bicep' = {
     location: location
     tags: tags
     containerEnvId: containerAppEnv.outputs.id
-    imageName: 'ghcr.io/langfuse/langfuse:latest'
+    imageName: 'ghcr.io/langfuse/langfuse:2'
     targetPort: 3000
     env: [
       {
