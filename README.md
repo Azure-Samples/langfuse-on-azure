@@ -12,6 +12,9 @@ page_type: sample
 urlFragment: langfuse-on-azure
 ---
 
+> [!IMPORTANT]  
+> This repository is deprecated, in favor of [github.com/langfuse/langfuse-terraform-azure](https://github.com/langfuse/langfuse-terraform-azure). Please deploy that one and share your feedback there. Thank you!
+
 # Langfuse on Azure
 
 Use the [Azure Developer CLI](https://learn.microsoft.com/azure/developer/azure-developer-cli/overview) to deploy [Langfuse](https://langfuse.com/) to Azure Container Apps with PostgreSQL Flexible server.
